@@ -106,7 +106,7 @@ const ClientForm = () => {
             <input 
             type="checkbox"
             onChange={e => setEmergency(e.target.checked ? true : false)}
-            value={emergency}
+            checked={emergency}
             className="checkbox"
             />
 
@@ -114,7 +114,7 @@ const ClientForm = () => {
             <input 
             type="checkbox"
             onChange={e => setContract(e.target.checked ? true : false)}
-            value={contract}
+            checked={contract}
             className="checkbox"
             />
             <button className="add-client">Add New Client</button>
