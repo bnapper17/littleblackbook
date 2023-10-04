@@ -15,7 +15,8 @@ const Archive = () => {
             const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/archive', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
-                }
+                },
+                mode: 'cors'
             });
             const json = await response.json();
             

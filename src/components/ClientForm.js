@@ -26,13 +26,14 @@ const ClientForm = () => {
 
         const client = {name, contact, address, description, bid, emergency, contract, archived}
 
-        const response = await fetch('/api/clients', {
+        const response = await fetch('https://littleblackbook-api.onrender.com/api/clients', {
             method: 'POST',
             body: JSON.stringify(client),
             headers : {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
-            }
+            },
+            mode: 'cors'
         })
 
         const json = await response.json();

@@ -15,13 +15,14 @@ const Clients = ({client}) => {
 
         client.archived = true;
 
-        const response = await fetch('/api/clients/' + client._id, {
+        const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/' + client._id, {
             method: 'PATCH',
             body: JSON.stringify(client),
             headers : {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
-            }
+            },
+            mode: 'cors'
         })
 
         const json = await response.json();

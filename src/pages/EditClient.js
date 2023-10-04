@@ -33,7 +33,8 @@ const EditClient = () => {
             headers : {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
-            }
+            },
+            mode: 'cors'
         })
 
         const json = await response.json();
