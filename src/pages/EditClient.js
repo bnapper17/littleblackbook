@@ -27,7 +27,7 @@ const EditClient = () => {
 
         const client = {name, contact, address, description, bid, emergency, contract}
 
-        const response = await fetch('/api/clients/' + clients._id, {
+        const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/' + clients._id, {
             method: 'PATCH',
             body: JSON.stringify(client),
             headers : {

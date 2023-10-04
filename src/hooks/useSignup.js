@@ -19,7 +19,7 @@ export const useSignup = () => {
             return;
         }
 
-        const response = await fetch('/api/user/signup', {
+        const response = await fetch('https://littleblackbook-api.onrender.com/api/user/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})

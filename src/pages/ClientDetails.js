@@ -53,7 +53,7 @@ const ClientDetails = () => {
     useEffect(() => {
 
         const fetchDetails = async () => {
-            const response = await fetch('/api/clients/' + id, {
+            const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/' + id, {
                 headers : {
                     'Authorization': `Bearer ${user.token}`
                 }
