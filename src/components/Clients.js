@@ -1,12 +1,13 @@
 import { useClientContext } from '../hooks/useClientContext';
 import { useAuthContext } from '../hooks/useAuthContext';
-import{ Link } from 'react-router-dom';
-import {formatDistanceToNow} from 'date-fns';
+import { Link, useLocation } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
 const Clients = ({client}) => {
     const { user } = useAuthContext();
     const { dispatch } = useClientContext();
+    const { pathname } = useLocation();
     const dollar = Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'})
 
      
@@ -46,10 +47,10 @@ const Clients = ({client}) => {
             {client.bid > 0 && <p className="bid details"><span>Bid: </span>{dollar.format(client.bid) }</p>}
             <p className="contract details">{client.contract ? 'Contract' : 'No Contract'}</p>
             <p className='created'>{formatDistanceToNow(new Date(client.createdAt), {addSuffix: true})}</p>
-            <button 
+            {pathname !== '/archive' && <button 
             className='material-symbols-outlined'
             onClick={handleArchive}
-            >Archive</button>
+            >Archive</button>}
         </div>
      );
 }
