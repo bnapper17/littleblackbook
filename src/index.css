@@ -1,13 +1,482 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary: rgb(226, 247, 247);
+  --secondary: rgb(80, 34, 153);
+  --ff-primary: 'Raleway', sans-serif;
+}
+
+body {
+  background-color: var(--primary);
+  color: var(--secondary);
+  overflow-x: hidden;
+}
+
+/* header */
+header {
+  display: flex;
+  background: var(--secondary);
+  color: var(--primary);
+  min-height: 7vh;
+  justify-content: space-between;
+  align-items: last baseline;
+}
+
+header h1{
+  font-size: 3.5rem;
+  margin-left: 1.5rem;
+  font-family: var(--ff-primary);
+  font-weight: 300;
+}
+
+header a{
+  color: var(--primary);
+  font-size: 2rem;
+  margin-inline: 2rem;
+  margin-block: .5rem;
+}
+
+.sign-in{
+  margin-block: .5rem;
+}
+.sign-in a{
+  font-size: 1.25rem;
+  margin: .5rem;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 30;
+}
+
+/* mobile form plus symbol */
+.material-symbols-outlined.add{
+  display: none;
+  margin-inline: 1.5rem;
+  cursor: pointer;
+  transition: transform 1s linear;
+  background: none;
+  border: none;
+  color: var(--primary)
+}
+/* Sign-in forms */
+.login, .signup{
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px var(--secondary);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: .75rem;
+  width: 70vw;
+  margin-inline: auto;
+  margin-top: 3rem;
+  padding: 1rem;
+  font-family: var(--ff-primary);
+}
+
+.login h3, .signup h3{
+  grid-column: span 4;
+  margin-inline: auto;
+  font-size: 2.5rem;
+  font-weight: normal;
+}
+
+.login label, .signup label{
+  font-size: 1.5rem;
+  justify-self: end;
+}
+
+.login input, .signup input {
+  font-size: 1.25rem;
+  padding: .25rem;
+}
+
+.login button, .signup button{
+  grid-column: span 4;
+  margin-inline: auto;
+  padding-block: .25rem;
+  padding-inline: .75rem;
+  font-size: 1.25rem;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 1px 1px rgb(107, 107, 107)
+}
+
+.home-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding-bottom: 2rem;
+}
+
+
+/* Client Cards */
+.client{
+  position: relative;
+  margin-inline: 1.5rem;
+  margin-block: 1rem;
+  padding: .5rem;
+  height: fit-content;
+  border-radius: 5px;
+  box-shadow: 2.5px 2.5px 2.5px 2.5px;
+  
+}
+
+.client.emergency{
+  box-shadow: 2.5px 2.5px 2.5px 2.5px red;
+}
+
+.name {
+  font-family: var(--ff-primary);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.material-symbols-outlined.check {
+  color: green;
+  font-size: 2.25rem;
+}
+
+.name a{
+  color: var(--secondary);
+}
+
+.contact{
+  color: var(--secondary);
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  width: fit-content;
+  margin-block: 1.25rem;
+  color: var(--secondary);
+}
+
+.contact a{
+  color: var(--secondary);
+}
+
+.address{
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  margin-block: .75rem;
+}
+
+.description{
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  width: fit-content;
+  margin-bottom: .75rem;
+  font-style: italic;
+}
+
+.bid{
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: .75rem;
+}
+
+.bid span{
+  font-weight: 600;
+}
+
+.created{
+  position: absolute;
+  bottom: .25rem;
+  right: 5%;
+  font-family: sans-serif;
+  font-size: 1.125rem;
+}
+
+.contract{
+  font-family: sans-serif;
+  font-size: 1.25rem;
+}
+
+.client button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--secondary);
+  color: var(--primary);
+  padding: .25rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.client-form {
+  min-height: 45vh;
+  border-left: solid;
+  border-bottom: solid;
+  border-radius: 30px;
+  display: grid;
+  row-gap: .5rem;
+  column-gap: .25rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin-top: -25px;
+  margin-right: -25px;
+  padding: 3rem 3rem 1rem 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+  header {
+    justify-content: end;
+  }
+  header h1 {
+    display: none;
+  }
+  header a{
+    color: var(--primary);
+    margin-inline: auto;
+  }
+  .login, .signup{
+    width: 95vw;
+  }
+  .material-symbols-outlined.add{
+    display: block;
+  }
+  .home-container, .client-details-container {
+    position: relative;
+    display: block;
+    overflow-x: hidden;
+  }
+  .client-container{
+    width: 100vw;
+    height: 100vh;
+  }
+  .details{
+    display: none;
+  }
+  .contact{
+  padding: .25rem;
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: .5px .5px .5px .5px;
+  }
+  .client-form-container {
+    display: none;
+  }
+
+}
+.col-span-3{
+  grid-column: span 3;
+}
+
+.client-form label {
+  font-family: var(--ff-primary);
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.client-form input{
+  font-family: sans-serif; 
+  font-size: 2rem;
+}
+
+.checkbox{
+  height: 15px;
+}
+
+.add-client{
+  grid-column: span 4;
+  width: fit-content;
+  font-size: 1.5rem;
+  font-family: var(--ff-primary);
+  color: var(--primary);
+  padding-block: .25rem;
+  padding-inline: .5rem;
+  margin-inline: auto;
+  background-color: rgba(80, 34, 153, .8);
+  border-radius: 5px;
+  border-style: none;
+  box-shadow: 2px 2px 2px 1.5px rgb(107, 107, 107);
+}
+
+/* Mobile Client Form */
+
+.mobile-form{
+  display: hidden;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: left 1s ease-in-out;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, .9);
+  height: 100vh;
+  width: 100vw;
+}
+
+.edit-client-form .client-form, .mobile-form .client-form{
+  padding-bottom: 3rem;
+  border: none;
+  border-radius: 0px;
+  margin-top: 2rem; 
+}
+
+.edit-client-form label, .mobile-form label {
+  color: var(--primary);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.edit-client-form input, .mobile-form input {
+  height: 2.5rem;
+}
+
+.edit-client-form .checkbox, .mobile-form .checkbox {
+  height: 1.5rem;
+}
+
+/* Edit Client Form */
+.edit-client-form{
+  position: absolute;
+  top: 0;
+  left: 200%;
+  transition: left 1s ease-in-out;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, .9);
+  height: 100vh;
+  width: 100vw;
+}
+
+
+/* Client Details Page */
+.client-details-container {
+  height: 100vh;
+  margin-bottom: 15%;
+}
+
+.client-details{
+  margin: 1rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.client-details .name{
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.client-details .contact{
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.client-details .address{
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.client-details .description{
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.client-details .bid{
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.client-details .emergency{
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.client-details .contract{
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.client-details .created{
+  all: unset;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+
+.edit-button {
+  background-color: var(--secondary);
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-family: var(--ff-primary);
+  width: fit-content;
+  padding: .5rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1.5px rgb(107, 107, 107);
+}
+
+.delete-button{
+  position: absolute;
+  right: 5%;
+  width: fit-content;
+  font-size: 1.25rem;
+  padding: .35rem;
+  border-radius: 5px;
+  border-color: var(--secondary);
+  color: var(--secondary);
+  font-family: var(--ff-primary);
+  background-color: var(--primary);
+  box-shadow: none;
+}
+
+.footer{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  width: 100vw;
+  background-color: var(--secondary);
+  color: var(--primary);
+  padding: .5rem;
+  font-family: var(--ff-primary);
+}
+
+.footer a{
+  color: var(--secondary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  background-color: var(--primary);
+  margin-right: 1rem;
+}
+
+.user-container{
+  display: flex;
+  margin-right: 15px;
+}
+
+.user{
+  font-size: 1.5rem;
+  margin-right: 10%;
+}
+
+.logout{
+  font-size: 1.25rem;
+  color: var(--secondary);
+  background-color: var(--primary);
+  padding: .25rem;
+  border: 2px solid green;
+  border-radius: 5px;
+}
+
+.error{
+  grid-column: span 4;
+  background-color: rgba(255, 0, 0, .8);
+  padding: .5rem;
+  font-size: 1.25rem;
+  font-family: var(--ff-primary);
+  color: black;
+  margin-inline: auto;
 }
