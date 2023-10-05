@@ -46,7 +46,7 @@ const ClientDetails = () => {
 
         if(response.ok) {
             dispatch({type: 'DELETE_CLIENT', payload: json});
-            navigate('/');
+            navigate(-1);
         };
         
     };
