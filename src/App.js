@@ -25,11 +25,11 @@ function App() {
           element={user ? <Archive/> : <Navigate to='/login' />}
           />
           <Route 
-          exact path="/login"
+          path="https://little-black-book.netlify.app/login"
           element={!user ? <Login/> : <Navigate to="/" />}
           />
           <Route 
-          exact path="/signup"
+          path="/signup"
           element={!user ? <Signup/> : <Navigate to="/" />}
           />
           <Route
