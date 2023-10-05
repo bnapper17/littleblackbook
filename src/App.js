@@ -25,7 +25,7 @@ function App() {
           element={user ? <Archive/> : <Navigate to='/login' />}
           />
           <Route 
-          path="https://little-black-book.netlify.app/login"
+          path="/login"
           element={!user ? <Login/> : <Navigate to="/" />}
           />
           <Route 
