@@ -118,6 +118,7 @@ header a{
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding-bottom: 2rem;
+  overflow-x: hidden;
 }
 
 
