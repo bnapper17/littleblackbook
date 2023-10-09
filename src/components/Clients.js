@@ -11,7 +11,27 @@ const Clients = ({client}) => {
     const dollar = Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'})
 
      
-    
+    const openMenu = (e) => {
+        const modal = e.target.nextElementSibling;
+
+        modal.style.opacity = 1;
+        modal.style.pointerEvents = 'all';
+        modal.style.height = '100%';
+
+    }
+
+    const closeModal = (e) => {
+        const modal = e.target
+        if(e.target.id === 'modal') {
+        modal.style.opacity = 0;
+        modal.style.pointerEvents = 'none';
+        modal.style.height = '0%';
+        } else {
+            return
+        }
+    }
+
+
     const handleArchive = async () => {
 
         const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/' + client._id, {
@@ -32,7 +52,56 @@ const Clients = ({client}) => {
         }
     }
 
+    const handleDelete = async () => {
 
+        const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/' + client._id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`   
+            },
+            mode: 'cors'
+        });
+
+        const json = await response.json();
+
+        if(response.ok) {
+            dispatch({type: 'DELETE_CLIENT_LISTING', payload: json});
+        };
+        
+    };
+
+    const handleSelect = (e) => {
+        const completeButton = document.getElementById('complete');
+        const deleteButton = document.getElementById('delete');
+
+        if(e.target.id === 'complete') {
+            e.target.style.backgroundColor = 'green';
+            e.target.style.color = 'var(--primary)'
+            e.target.classList.add('selected')
+            deleteButton.style.backgroundColor = 'transparent'
+            deleteButton.style.color = 'red';
+            deleteButton.classList.remove('selected');
+        }
+        if(e.target.id === 'delete') {
+            e.target.style.backgroundColor = 'red';
+            e.target.style.color = 'var(--primary)';
+            e.target.classList.add('selected');
+            completeButton.style.backgroundColor = 'transparent';
+            completeButton.style.color = 'green';
+            completeButton.classList.remove('selected');
+        }
+
+    }
+
+    const handleConfirm = (e) => {
+        if(e.target.id === 'complete') {
+            handleArchive();
+            e.target.classList.remove('selected');
+        }
+        if(e.target.id === 'delete') {
+            handleDelete();
+        }
+    };
 
     return ( 
         <div 
@@ -46,10 +115,34 @@ const Clients = ({client}) => {
             {client.bid > 0 && <p className="bid details"><span>Bid: </span>{dollar.format(client.bid) }</p>}
             <p className="contract details">{client.contract ? 'Contract' : 'No Contract'}</p>
             <p className='created'>{formatDistanceToNow(new Date(client.createdAt), {addSuffix: true})}</p>
-            {pathname !== '/archive' && <button 
+            {pathname === '/' && <button 
             className='material-symbols-outlined'
-            onClick={handleArchive}
-            >Archive</button>}
+            id='complete-menu-button'
+            onClick={openMenu}
+            >more_vert</button>}
+
+            <div id="modal" 
+            onClick={closeModal}
+            >
+                <button id='complete' 
+                onClick={(e) => {
+                    if(e.target.classList.contains('selected')) {
+                        handleConfirm(e);
+                    }
+                    else {
+                        handleSelect(e);
+                    }
+                }}>Completed</button>
+                <button id='delete'
+                onClick={(e) => {
+                    if(e.target.classList.contains('selected')) {
+                        handleConfirm(e);
+                    }
+                    else {
+                        handleSelect(e);
+                    }
+                }}>Delete</button>
+            </div>
         </div>
      );
 }

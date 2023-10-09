@@ -30,6 +30,10 @@ export const clientReducer = (state, action) => {
             return{
                 clients: null
             }
+        case "DELETE_CLIENT_LISTING" :
+            return{
+                clients: state.clients.filter(client => client._id !==action.payload._id)
+            }
         // Archive client
         case "ARCHIVE_CLIENT" :
             return{

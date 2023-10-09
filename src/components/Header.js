@@ -22,7 +22,7 @@ const Header = () => {
 
     return ( 
         <header>
-            <h1>CLIENTS</h1>
+            <h1>{pathname === '/archive' ? 'COMPLETED' : 'CLIENTS'}</h1>
             {user && clients && <Link to='/' className="job-total"><span className="open-jobs">{pathname !== '/archive' && clients.length}</span> Open {clients.length === 1 ? "Job" : "Jobs"}</Link>}
             {user && pathname === '/' && <button
             type="button" 
