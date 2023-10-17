@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Map from './components/Map';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
@@ -16,13 +17,13 @@ function App() {
       <Router>
         <Header />
         <Routes>  
-          <Route 
-          exact path="/"
-          element={user ? <Home/> : <Navigate to='/login' />}
-          />
           <Route
           path='/archive'
           element={user ? <Archive/> : <Navigate to='/login' />}
+          />
+          <Route
+          exact path="/map"
+          element={user ? <Map/> : <Navigate to="/login" />}
           />
           <Route 
           path="/login"
@@ -35,6 +36,10 @@ function App() {
           <Route
           path='/api/clients/:id'
           element={user ? <ClientDetails/> : <Navigate to="/login" />}
+          />
+          <Route 
+          exact path="/"
+          element={user ? <Home/> : <Navigate to='/login' />}
           />
         </Routes>
         {user && <Footer />}

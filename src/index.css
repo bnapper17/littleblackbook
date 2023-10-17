@@ -25,7 +25,7 @@ header {
   display: flex;
   background: var(--secondary);
   color: var(--primary);
-  min-height: 7vh;
+  height: 8vh;
   justify-content: space-between;
   align-items: last baseline;
 }
@@ -117,7 +117,6 @@ header a{
 .home-container {
   position: relative;
   width: 100%;
-  height: 100vh;
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding-bottom: 2rem;
@@ -271,7 +270,7 @@ header a{
   padding: 3rem 3rem 1rem 1rem;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   header {
     justify-content: end;
   }
@@ -297,12 +296,23 @@ header a{
     width: 100vw;
     height: 100vh;
   }
+  .created{
+    position: relative;
+    margin-top: .5rem;
+    left: 0;
+  }
   #modal{
-    flex-direction: column;
     justify-content: space-around;
   }
   #modal button{
     padding: .5rem;
+    margin-inline: .5rem;
+    width: fit-content;
+    height: fit-content;
+  }
+  #modal a{
+    height: fit-content;
+    width: fit-content;
   }
   .details{
     display: none;
@@ -484,6 +494,8 @@ header a{
   position: fixed;
   display: flex;
   justify-content: space-between;
+  /* max-height: 4vh; */
+  min-height: fit-content;
   bottom: 0;
   width: 100vw;
   background-color: var(--secondary);
@@ -527,4 +539,10 @@ header a{
   font-family: var(--ff-primary);
   color: black;
   margin-inline: auto;
+}
+
+/* Map */
+.map-container {
+  height: 86.5vh;
+  overflow: hidden;
 }

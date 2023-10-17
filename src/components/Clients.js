@@ -13,11 +13,9 @@ const Clients = ({client}) => {
      
     const openMenu = (e) => {
         const modal = e.target.nextElementSibling;
-
         modal.style.opacity = 1;
         modal.style.pointerEvents = 'all';
         modal.style.height = '100%';
-
     }
 
     const closeModal = (e) => {
@@ -103,14 +101,27 @@ const Clients = ({client}) => {
         }
     };
 
+    const getDirections = (e) => {
+        const location = e.target.id;
+
+
+        if(/iphone|ipad/i.test(navigator.userAgent)) {
+            window.location.href = '//maps.apple.com/?q=' + location
+        }
+        else{
+            window.location.href = '//maps.google.com/?q=' + location
+        }
+        console.log(location)
+    }
+
     return ( 
         <div 
         className={client.emergency ? 'client emergency' : 'client'}
         key={client._id}
         >
             <h3 className='name'><Link to={`/api/clients/${client._id}`}>{client.name}</Link>{client.contract && <span className="material-symbols-outlined check">check</span>}</h3>
-            {client.contact && <p className='contact'><a href={'tel:' + client.contact}>{formatPhoneNumber(client.contact)}</a></p>}
-            {client.address && <p className="address details">{client.address}</p>}
+            {client.contact && <p className='contact details'>{formatPhoneNumber(client.contact)}</p>}
+            {client.address && <p className="address details" onClick={getDirections}>{client.address}</p>}
             {client.description && <p className="description details">{client.description}</p>}
             {client.bid > 0 && <p className="bid details"><span>Bid: </span>{dollar.format(client.bid) }</p>}
             <p className="contract details">{client.contract ? 'Contract' : 'No Contract'}</p>
@@ -124,7 +135,9 @@ const Clients = ({client}) => {
             <div id="modal" 
             onClick={closeModal}
             >
-                <button id='complete' 
+                <button
+                className='material-symbols-outlined' 
+                id='complete' 
                 onClick={(e) => {
                     if(e.target.classList.contains('selected')) {
                         handleConfirm(e);
@@ -132,8 +145,11 @@ const Clients = ({client}) => {
                     else {
                         handleSelect(e);
                     }
-                }}>Completed</button>
-                <button id='delete'
+                }}>done_outline</button>
+
+                <button 
+                className='material-symbols-outlined'
+                id='delete'
                 onClick={(e) => {
                     if(e.target.classList.contains('selected')) {
                         handleConfirm(e);
@@ -141,7 +157,21 @@ const Clients = ({client}) => {
                     else {
                         handleSelect(e);
                     }
-                }}>Delete</button>
+                }}>delete_forever</button>
+
+                <button 
+                className="material-symbols-outlined directions" 
+                id={client.address}
+                onClick={getDirections}
+                >directions</button>
+
+                <a href={'tel:' + client.contact}>
+                    <button 
+                    className="material-symbols-outlined call" 
+                    id={client.address}
+                    onClick={getDirections}
+                    >call</button>
+                </a>
             </div>
         </div>
      );
