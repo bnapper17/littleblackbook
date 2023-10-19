@@ -3,14 +3,12 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import PhoneInput from 'react-phone-number-input/input'
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGeocode } from "../hooks/useGeocode";
 
 
 
 const EditClient = () => {
     const { user } = useAuthContext();
     const {clients, dispatch} = useClientContext();
-    const { geoCode } = useGeocode();
     const navigate = useNavigate();
     const [name, setName] = useState(clients.name);
     const [contact, setContact] = useState(clients.contact);
@@ -25,11 +23,9 @@ const EditClient = () => {
 
         if(!user) {
             return
-        }
+        } 
 
-        
-
-        const client = {name, contact, address, description, bid, emergency, contract, geolocation: address ? await geoCode(address) : null}
+        const client = {name, contact, address, description, bid, emergency, contract}
 
         const response = await fetch('https://littleblackbook-api.onrender.com/api/clients/' + clients._id, {
             method: 'PATCH',

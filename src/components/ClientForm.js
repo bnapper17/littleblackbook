@@ -2,12 +2,10 @@ import { useClientContext } from "../hooks/useClientContext";
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useState } from 'react';
 import PhoneInput from 'react-phone-number-input/input'
-import { useGeocode } from "../hooks/useGeocode";
 
 const ClientForm = () => {
     const { user } = useAuthContext();
     const { dispatch } = useClientContext();
-    const { geoCode } = useGeocode();
     const [name, setName] = useState('');
     const [contact, setContact] = useState('');
     const [address, setAddress] = useState('');
@@ -28,7 +26,7 @@ const ClientForm = () => {
             return;
         }
 
-        const client = {name, contact, address, description, bid, emergency, contract, archived, geolocation: address ? await geoCode(address) : null}
+        const client = {name, contact, address, description, bid, emergency, contract, archived, geolocation: null}
 
         const response = await fetch('https://littleblackbook-api.onrender.com/api/clients', {
             method: 'POST',
